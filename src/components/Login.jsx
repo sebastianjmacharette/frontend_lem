@@ -7,31 +7,40 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/login",
-        { nombreUsuario: username, password: password }
-      );
-      // Si el inicio de sesión es exitoso, redirige al usuario al home
-      if (response.status === 200) {
-        // Captura el nombre de usuario desde la respuesta del servidor
-        const usuario = response.data.split(": ")[1];
-        // Almacena el nombre de usuario en el localStorage
-        localStorage.setItem("username", usuario);
-        // Redirige al usuario al home
-        window.location.href = "/home";
-      }
-    } catch (error) {
+const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/login",
+      { username: username, password: password }
+    );
+    // Si el inicio de sesión es exitoso, captura el token de autenticación
+    const token = response.data.token;
+    // Verifica si se recibió un token válido
+    if (token) {
+      // Almacena el token en el localStorage
+      localStorage.setItem("token", token);
+      // Redirige al usuario al home
+      window.location.href = "/home";
+    } else {
+      // Si no se recibió un token válido, muestra un mensaje de error
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Usuario o contraseña incorrectos!",
-        footer: 'Grupo Lem'
+        text: "No se recibió un token de autenticación válido",
+        footer: "Grupo Lem",
       });
     }
-  };
+  } catch (error) {
+    // Si hay un error en la solicitud, muestra un mensaje de error
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Usuario o contraseña incorrectos!",
+      footer: "Grupo Lem",
+    });
+  }
+};
 
   return (
     <div className="h-screen bg-neutral-200 ">
