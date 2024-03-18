@@ -4,6 +4,7 @@ import Navbar from './shared/navbar';
 import Swal from 'sweetalert2';
 
 function Registro() {
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -22,8 +23,13 @@ function Registro() {
       }
 
       const response = await axios.post(
-        "http://localhost:8080/api/registro",
-        { nombreUsuario: username, password: password }
+        "http://localhost:8080/createUser",
+        {
+          email: email,
+          username: username,
+          password: password,
+          roles: ["ADMIN"] // Aquí puedes ajustar los roles según tus necesidades
+        }
       );
 
       Swal.fire({
@@ -54,7 +60,18 @@ function Registro() {
       <div className="px-10 sm:px-4 md:px-10 lg:px-60">
         <form onSubmit={handleRegistro}>
           <div className="mt-10">
-            <label htmlhtmlFor="username" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Usuario</label>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="bg-neutral-200 border-2 border-black text-teal-500 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-teal-500 dark:focus:ring-black dark:focus:border-black"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div className="mt-5">
+            <label htmlFor="username" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Usuario</label>
             <input
               type="text"
               value={username}
@@ -65,7 +82,7 @@ function Registro() {
             />
           </div>
           <div className="mb-5">
-            <label htmlhtmlFor="password" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Contraseña</label>
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Contraseña</label>
             <input
               type="password"
               value={password}
@@ -76,7 +93,7 @@ function Registro() {
             />
           </div>
           <div className="mb-5">
-            <label htmlhtmlFor="repeatPassword" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Confirmar Contraseña</label>
+            <label htmlFor="repeatPassword" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Confirmar Contraseña</label>
             <input
               type="password"
               value={repeatPassword}
@@ -89,7 +106,7 @@ function Registro() {
 
           <button
             type="submit"
-            className="text-white bg-teal-500 hover:bg-gray-900 text-base font-semibold focus:outline-none focus:ring-4 focus:ring-gray-300  rounded-full px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+            className="text-white bg-teal-500 hover:bg-gray-900 text-base font-semibold focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-full px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
           >
             Registrarse
           </button>
@@ -99,4 +116,4 @@ function Registro() {
   );
 }
 
-export default Registro;
+export default Registro
