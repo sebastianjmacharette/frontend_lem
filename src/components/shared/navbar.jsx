@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from "react";
+import Swal from 'sweetalert2';
 
 function navbar() {
   const [username, setUsername] = useState("");
+  const user = localStorage.getItem("user");
 
 
   //logout con pregunta
@@ -19,7 +21,7 @@ function navbar() {
     }).then((result) => {
       if (result.isConfirmed) {
         //  lógica para cerrar sesión
-        window.location.href = "/logout";
+        window.location.href = "http//localhost:8080/logout";
       }
     });
   };
@@ -41,12 +43,7 @@ function navbar() {
             />
           </a>
           <div className='flex items-center md:order-2 space-x-1 md:space-x-2 rtl:space-x-reverse'>
-            {/* <span
-              className='text-teal-500 dark:text-teal-500 text-2xl 
-              font-bold mb-2 rounded-lg  px-4 py-2 md:px-5 md:py-2.5 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800'
-            >
-              bienvenido:{username}
-            </span> */}
+           
             
             <button
               data-collapse-toggle='mega-menu'
@@ -93,7 +90,7 @@ function navbar() {
 className="text-teal-500 bg-stone-300 hover:bg-stone-400 focus:ring-4 focus:outline-none focus:ring-stone-400  
 rounded-lg text-xl font-semibold px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
 type="button">Huespedes<svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
 </svg>
 </button>
 
@@ -126,7 +123,7 @@ type="button">Huespedes<svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmln
     data-dropdown-delay="500"
     data-dropdown-trigger="hover"
     className="text-teal-500 bg-stone-300 hover:bg-stone-400 focus:ring-4 focus:outline-none 
-    focus:ring-stone-400 font-medium rounded-lg text-xl font-semibold px-5 py-2.5 text-center inline-flex items-center
+    focus:ring-stone-400  rounded-lg text-xl font-semibold px-5 py-2.5 text-center inline-flex items-center
      dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
     type="button"
   >
@@ -280,13 +277,17 @@ type="button">Huespedes<svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmln
 <li>
   <a
               href='#'
-              className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                  className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none 
+              focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+               dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
               onClick={handleLogout}
             >
               Cerrar sesión
-            </a>
+                </a>
+         
+            
 </li>
-
+      
 
       </ul>
     </div>
