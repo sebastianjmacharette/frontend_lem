@@ -1,43 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import esLocale from '@fullcalendar/core/locales/es';
+import axios from 'axios';
 
 function Calendar() {
-  const events = [
-    // eventos a consumir por api
-    {
-      title: 'Reserva 1',
-      start: '2024-03-15T10:00:00',
-      end: '2024-03-15T12:00:00'
-    },
-    {
-      title: 'Reserva 2',
-      start: '2024-03-16T14:00:00',
-      end: '2024-03-16T16:00:00'
-    }
-  ];
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/reservas')
+      .then(response => {
+        const reservations = response.data;
+        const formattedEvents = reservations.map(reservation => ({
+          id: reservation.idReservations,
+          title: `Reserva ${reservation.numero_habitacion}`, // Mostrar número de habitación en el título
+          start: reservation.startDate,
+          end: reservation.endDate,
+          backgroundColor: getReservationColor(reservation.status) // Obtener color según el estado de la reserva
+        }));
+        setEvents(formattedEvents);
+      })
+      .catch(error => {
+        console.error('Error al obtener las reservas:', error);
+      });
+  }, []);
 
   function handleDateClick(info) {
-    // Aquí puedes manejar el evento de clic en una fecha
-    // Por ejemplo, mostrar los datos en un popup o modal
     alert(`Fecha clickeada: ${info.dateStr}`);
   }
 
-  return (
-    <>
+  // Función para obtener el color de la reserva según el estado
+  function getReservationColor(status) {
+    switch (status) {
+      case 'LIBRE':
+        return 'green'; // Color verde para reservas libres
+      case 'OCUPADA':
+        return 'red'; // Color rojo para reservas ocupadas
+      case 'MANTENIMIENTO':
+        return 'yellow'; // Color amarillo para reservas en mantenimiento
+      default:
+        return 'blue'; // Color azul predeterminado para otros estados
+    }
+  }
 
-    <div className="bg-neutral-200 p-4  text-teal-500 font-semibold text-center"> {/* Aplicar clases de Tailwind CSS al contenedor principal */}
+  // Función para personalizar el contenido del evento
+  function customEventContent(eventInfo) {
+    return (
+      <>
+        <div>{eventInfo.timeText}</div> {/* Mostrar hora */}
+        <div>{eventInfo.event.title}</div> {/* Mostrar título */}
+      </>
+    );
+  }
+
+  return (
+    <div className="bg-neutral-200 p-4 text-teal-500 font-semibold text-center">
       <FullCalendar
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
         events={events}
-        locale={esLocale} // Configuración del idioma español
-        dateClick={handleDateClick} // Manejar el clic en una fecha
-        className="w-full bg-white rounded shadow p-4" // Aplicar clases de Tailwind CSS al calendario
+        locale={esLocale}
+        dateClick={handleDateClick}
+        eventContent={customEventContent} 
+        className="w-full bg-white rounded shadow p-4"
       />
     </div>
-    </>
   );
 }
 
