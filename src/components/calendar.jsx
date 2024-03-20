@@ -8,43 +8,47 @@ function Calendar() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
+    const token = localStorage.getItem('token'); // Obtener token del localStorage
+    const role = localStorage.getItem('role'); // Obtener rol del localStorage
+
+    // Configurar interceptor para token y rol
+    axios.interceptors.request.use(config => {
+      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Role = role;
+      return config;
+    }, error => {
+      console.error('Error en el interceptor de solicitud:', error);
+      return Promise.reject(error);
+    });
+
     axios.get('http://localhost:8000/reservas')
       .then(response => {
+        console.log('Respuesta de la solicitud GET:', response);
         const reservations = response.data;
+
+        // Verificar existencia de `numero_habitacion` (ajustar formato del título si es necesario)
         const formattedEvents = reservations.map(reservation => ({
           id: reservation.idReservations,
-          title: `Reserva ${reservation.numero_habitacion}`, // Mostrar número de habitación en el título
-          start: reservation.startDate,
-          end: reservation.endDate,
-          backgroundColor: getReservationColor(reservation.status) // Obtener color según el estado de la reserva
+          title: reservation.numero_habitacion
+            ? `Reserva ${reservation.numero_habitacion}`
+            : 'Reserva (sin número de habitación)', // Título predeterminado
+          start: reservation.startDate ? new Date(reservation.startDate) : null, // Manejar formato de fecha potencial
+          end: reservation.endDate ? new Date(reservation.endDate) : null,
+          backgroundColor: '#FFCC99',
         }));
+        console.log('Eventos formateados:', formattedEvents);
         setEvents(formattedEvents);
       })
       .catch(error => {
         console.error('Error al obtener las reservas:', error);
+        // Manejar errores (mostrar mensaje al usuario)
       });
   }, []);
 
   function handleDateClick(info) {
     alert(`Fecha clickeada: ${info.dateStr}`);
   }
-
-  // Función para obtener el color de la reserva según el estado
-  function getReservationColor(status) {
-    switch (status) {
-      case 'LIBRE':
-        return 'green'; // Color verde para reservas libres
-      case 'OCUPADA':
-        return 'red'; // Color rojo para reservas ocupadas
-      case 'MANTENIMIENTO':
-        return 'yellow'; // Color amarillo para reservas en mantenimiento
-      default:
-        return 'blue'; // Color azul predeterminado para otros estados
-    }
-  }
-
-  // Función para personalizar el contenido del evento
-  function customEventContent(eventInfo) {
+function customEventContent(eventInfo) {
     return (
       <>
         <div>{eventInfo.timeText}</div> {/* Mostrar hora */}
@@ -61,7 +65,7 @@ function Calendar() {
         events={events}
         locale={esLocale}
         dateClick={handleDateClick}
-        eventContent={customEventContent} 
+        eventContent={customEventContent}
         className="w-full bg-white rounded shadow p-4"
       />
     </div>
@@ -69,3 +73,6 @@ function Calendar() {
 }
 
 export default Calendar;
+
+
+    

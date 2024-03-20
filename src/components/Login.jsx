@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
+import { setToken } from './token/tokenSlice'; // Importa la acción setToken del slice
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch(); // Obtén la función dispatch
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,15 +23,20 @@ function Login() {
       if (responseData.token) {
         const token = responseData.token;
         const user = responseData.Username;
+        const role = responseData.Role; // Agregar captura del rol
         console.log("Token de autenticación:", token);
         console.log("Usuario:", user);
+        console.log("Rol:", role); // Mostrar el rol en la consola
         localStorage.setItem("token", token);
         localStorage.setItem("user", user);
+        localStorage.setItem("role", role); // Almacenar el rol en localStorage
         console.log("Token almacenado en localStorage:", token);
-       // Después de almacenar el token y el usuario en localStorage
-        // Redirigir al usuario a la página de inicio (Home)
-        window.location.href = "/home";
 
+        // Actualiza el estado del token en Redux
+        dispatch(setToken(token));
+
+        // Redirigir al usuario a la página de inicio
+        window.location.href = "/home";
       } else {
         // Si no se recibió un token en la respuesta, mostrar un mensaje de error
         Swal.fire({
@@ -47,6 +56,7 @@ function Login() {
       });
     }
   };
+
 
   return (
     <div className="h-screen bg-neutral-200 ">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { Provider } from 'react-redux'; // Importa el Provider de react-redux
+import store from './components/token/store'; // Importa el store de Redux
 import Login from './components/Login';
 import Home from './components/Home';
 import Registro from './components/Registro';
@@ -21,6 +22,8 @@ import NuevaHabitacion from './components/NuevaHabitacion';
 
 function App() {
   return (
+        <Provider store={store}> {/* Envuelve toda la aplicación con el Provider y pasa el store */}
+
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
@@ -44,7 +47,10 @@ function App() {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/nueva-habitacion" element={<NuevaHabitacion />} />
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+          </Provider>
+
+
   );
 }
 

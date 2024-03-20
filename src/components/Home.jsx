@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useSelector } from 'react-redux';
 import Navbar from './shared/navbar';
-import Calendar from "./calendar";
 import Footer from "./shared/Footer";
 
 function Home() {
-  // Recuperar el token y el usuario del almacenamiento local
-  const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
+  // Usa useSelector para acceder al estado de Redux
+  const token = useSelector(state => state.token.token);
+  const isAuthenticated = useSelector(state => state.token.isAuthenticated);
 
   return (
-    <div>
-       <Navbar /> 
-      <h2>{user}</h2>
-      <h2>{token }</h2>
-       <Calendar /> 
-       <Footer /> 
+    <div className="h-screen bg-neutral-200">
+      <Navbar />
+      <div>
+        {/* Muestra los datos almacenados en Redux */}
+        <h1>Token: {token}</h1>
+        <h2>Autenticado: {isAuthenticated ? 'Sí' : 'No'}</h2>
+      </div>
+      <Footer />
     </div>
   );
 }
