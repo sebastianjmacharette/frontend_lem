@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "./shared/navbar";
+import { useNavigate } from "react-router-dom";
 
 function NuevoHuesped() {
   const [formData, setFormData] = useState({
@@ -10,47 +11,58 @@ function NuevoHuesped() {
     hostTelephone: "",
     hostBirthDay: "",
     notes: "",
-    numberOfCompanions: 0
+    numberOfCompanions: 0,
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:8080/crearHuesped",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
-      if (response.status === 200) {
-        alert("Huesped creado exitosamente");
-        // Limpia el formulario después de enviarlo con éxito
-        setFormData({
-          hostName: "",
-          hostLastname: "",
-          hostDni: "",
-          hostTelephone: "",
-          hostBirthDay: "",
-          notes: "",
-          numberOfCompanions: 0
-        });
-      } else {
-        alert("Error al crear huesped");
+  const navigate = useNavigate();
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      "http://localhost:8080/crearHuesped",
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       }
-    } catch (error) {
-      console.error("Error:", error);
+    );
+    if (response.status === 200) {
+      console.log(response.data); // Imprime el contenido del objeto response.data
+      console.log(response.data.idHost); // Captura el idHost y lo imprime en la consola
+      alert("Huesped creado exitosamente");
+      // Limpia el formulario después de un envío exitoso (opcional)
+      setFormData({
+        hostName: "",
+        hostLastname: "",
+        hostDni: "",
+        hostTelephone: "",
+        hostBirthDay: "",
+        notes: "",
+        numberOfCompanions: 0,
+      });
+
+      // Almacena los datos del huésped en el almacenamiento local (temporalmente)
+      localStorage.setItem("guestData", JSON.stringify(response.data));
+
+      // Redirecciona a /nombresAcompanantes
+      navigate(`/nombresAcompanantes/${response.data.idHost}`);
+    } else {
       alert("Error al crear huesped");
     }
-  };
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Error al crear huesped");
+  }
+};
+
 
   return (
     <div className='bg-neutral-200 h-screen '>

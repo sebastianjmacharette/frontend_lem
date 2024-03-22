@@ -1,44 +1,40 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useDispatch } from 'react-redux';
-import { setToken } from './token/tokenSlice'; // Importa la acción setToken del slice
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch(); // Obtén la función dispatch
-
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       const response = await axios.post(
         "http://localhost:8080/login",
-        { username: username, password: password }
+        { username, password }
       );
+
       const responseData = response.data;
-      
-      // Verificar si se recibió un token en la respuesta
+      console.log("Respuesta del inicio de sesión:", responseData);
+
       if (responseData.token) {
         const token = responseData.token;
-        const user = responseData.Username;
-        const role = responseData.Role; // Agregar captura del rol
+        const user = responseData.Username; // Ajusta si el nombre de la propiedad es diferente
+        const role = responseData.Role; // Ajusta si el nombre de la propiedad es diferente
+
         console.log("Token de autenticación:", token);
-        console.log("Usuario:", user);
-        console.log("Rol:", role); // Mostrar el rol en la consola
+        console.log("Nombre de usuario:", user);
+        console.log("Rol:", role);
+
+        // Almacena la información en LocalStorage
         localStorage.setItem("token", token);
         localStorage.setItem("user", user);
-        localStorage.setItem("role", role); // Almacenar el rol en localStorage
-        console.log("Token almacenado en localStorage:", token);
+        localStorage.setItem("role", role);
 
-        // Actualiza el estado del token en Redux
-        dispatch(setToken(token));
-
-        // Redirigir al usuario a la página de inicio
+        // Redirecciona a la página principal o la que desees
         window.location.href = "/home";
       } else {
-        // Si no se recibió un token en la respuesta, mostrar un mensaje de error
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -51,13 +47,11 @@ function Login() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Usuario o contraseña incorrectos!",
+        text: "¡Usuario o contraseña incorrectos!",
         footer: "Grupo Lem",
       });
     }
   };
-
-
   return (
     <div className="h-screen bg-neutral-200 ">
       <div className="flex items-start mb-5 justify-content-center">
