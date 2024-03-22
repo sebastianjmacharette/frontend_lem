@@ -18,10 +18,15 @@ import ListaReservas from './components/ListaReservas';
 import Calendar from './components/Reservation';
 import NuevaHabitacion from './components/NuevaHabitacion';
 import NombresAcompanantes from './components/nombresAcompanantes';
+import NuevaReserva from './components/NuevaReserva';
+import PreReserva from './components/PreReserva';
+
+
 function App() {
   return (
     
-        <BrowserRouter>
+    <BrowserRouter>
+
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/home" element={<Home />} />
@@ -43,9 +48,14 @@ function App() {
             <Route path="/lista-reservas" element={<ListaReservas />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/nueva-habitacion" element={<NuevaHabitacion />} />
-            <Route path="/nombresAcompanantes/:idHost" element={<NombresAcompanantes />} />
+        <Route path="/nombresAcompanantes/:idHost" element={<NombresAcompanantes />} />
+        <Route path="/nueva-reserva" element={<NuevaReserva />} />
+                <Route path="/pre-reserva" element={<PreReserva /> } />
 
-         </Routes>
+
+
+        </Routes>
+
         </BrowserRouter>
     
   );
