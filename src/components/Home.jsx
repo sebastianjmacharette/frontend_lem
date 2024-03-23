@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './shared/navbar';
+import React, { useState, useEffect } from "react";
+import Navbar from "./shared/navbar";
 import Footer from "./shared/Footer";
 
 function Home() {
@@ -9,9 +9,9 @@ function Home() {
 
   // Ejecutar solo una vez después del renderizado inicial
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-    const storedRole = localStorage.getItem('role');
+    const storedToken = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+    const storedRole = localStorage.getItem("role");
 
     setToken(storedToken);
     setUsername(storedUser);
@@ -23,7 +23,7 @@ function Home() {
       <Navbar />
       <div>
         <h1>Token: {token}</h1>
-        <h2>Autenticado: {token ? 'Sí' : 'No'}</h2>
+        <h2>Autenticado: {token ? "Sí" : "No"}</h2>
         <h2>Usuario: {username}</h2>
         <h2>Rol: {role}</h2>
       </div>

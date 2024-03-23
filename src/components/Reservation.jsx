@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Reservations() {
   const [reservations, setReservations] = useState([]);
@@ -9,13 +9,15 @@ function Reservations() {
   useEffect(() => {
     const fetchReservations = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/reservas');
+        const response = await axios.get("http://localhost:8080/reservas");
         console.log(response.data); // Verifica la estructura de los datos en la consola
-        const reservationsArray = Array.isArray(response.data) ? response.data : [response.data]; // Convierte a array si no lo es
+        const reservationsArray = Array.isArray(response.data)
+          ? response.data
+          : [response.data]; // Convierte a array si no lo es
         setReservations(reservationsArray);
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching reservations:', error);
+        console.error("Error fetching reservations:", error);
         setError(error);
         setIsLoading(false);
       }

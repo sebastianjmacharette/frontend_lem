@@ -1,14 +1,12 @@
-import Navbar from './shared/navbar';
-import React from 'react';
+import Navbar from "./shared/navbar";
+import React from "react";
 
 function ListaReservas() {
   return (
     <>
-
-<Navbar />
-
+      <Navbar />
     </>
-  )
+  );
 }
 
-export default ListaReservas
+export default ListaReservas;

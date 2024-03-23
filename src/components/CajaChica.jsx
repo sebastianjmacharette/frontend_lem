@@ -1,14 +1,12 @@
-import React from 'react'
-import Navbar from './shared/navbar';
+import React from "react";
+import Navbar from "./shared/navbar";
 
 function CajaChica() {
   return (
     <>
-            <Navbar />
-
-      
-      </>
-  )
+      <Navbar />
+    </>
+  );
 }
 
-export default CajaChica
+export default CajaChica;

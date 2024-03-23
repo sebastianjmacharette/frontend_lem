@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function PreReserva() {
-  return (
-    <div>PreReserva</div>
-  )
+  return <div>PreReserva</div>;
 }
 
-export default PreReserva
+export default PreReserva;

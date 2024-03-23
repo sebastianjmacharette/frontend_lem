@@ -1,16 +1,12 @@
-import React from 'react'
-import Navbar from './shared/navbar';
-
-
-
+import React from "react";
+import Navbar from "./shared/navbar";
 
 function ModificarReserva() {
   return (
     <>
-          <Navbar />
-
+      <Navbar />
     </>
-  )
+  );
 }
 
-export default ModificarReserva
+export default ModificarReserva;

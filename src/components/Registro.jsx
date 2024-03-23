@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Navbar from './shared/navbar';
-import Swal from 'sweetalert2';
+import Navbar from "./shared/navbar";
+import Swal from "sweetalert2";
 
 function Registro() {
   const [email, setEmail] = useState("");
@@ -22,15 +22,12 @@ function Registro() {
         return;
       }
 
-      const response = await axios.post(
-        "http://localhost:8080/createUser",
-        {
-          email: email,
-          username: username,
-          password: password,
-          roles: ["ADMIN"] // Aquí puedes ajustar los roles según tus necesidades
-        }
-      );
+      const response = await axios.post("http://localhost:8080/createUser", {
+        email: email,
+        username: username,
+        password: password,
+        roles: ["ADMIN"], // Aquí puedes ajustar los roles según tus necesidades
+      });
 
       Swal.fire({
         icon: "success",
@@ -40,7 +37,6 @@ function Registro() {
 
       // Redirigir al usuario a /home
       window.location.href = "/home";
-
     } catch (error) {
       setError("Error al registrar");
       console.error("Error al registrar:", error);
@@ -51,16 +47,26 @@ function Registro() {
   return (
     <>
       <Navbar />
-      <h2 className="mt-10 text-center text-teal-500 text-4xl font-semibold">Nuevo Usuario</h2>
+      <h2 className="mt-10 text-center text-teal-500 text-4xl font-semibold">
+        Nuevo Usuario
+      </h2>
       {error && (
-        <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        <div
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+          role="alert"
+        >
           <span className="font-medium">¡Error!</span> {error}
         </div>
       )}
       <div className="px-10 sm:px-4 md:px-10 lg:px-60">
         <form onSubmit={handleRegistro}>
           <div className="mt-10">
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Email</label>
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500"
+            >
+              Email
+            </label>
             <input
               type="email"
               value={email}
@@ -71,7 +77,12 @@ function Registro() {
             />
           </div>
           <div className="mt-5">
-            <label htmlFor="username" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Usuario</label>
+            <label
+              htmlFor="username"
+              className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500"
+            >
+              Usuario
+            </label>
             <input
               type="text"
               value={username}
@@ -82,7 +93,12 @@ function Registro() {
             />
           </div>
           <div className="mb-5">
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Contraseña</label>
+            <label
+              htmlFor="password"
+              className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500"
+            >
+              Contraseña
+            </label>
             <input
               type="password"
               value={password}
@@ -93,7 +109,12 @@ function Registro() {
             />
           </div>
           <div className="mb-5">
-            <label htmlFor="repeatPassword" className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500">Confirmar Contraseña</label>
+            <label
+              htmlFor="repeatPassword"
+              className="block mb-2 text-sm font-medium text-teal-500 dark:text-teal-500"
+            >
+              Confirmar Contraseña
+            </label>
             <input
               type="password"
               value={repeatPassword}
@@ -116,4 +137,4 @@ function Registro() {
   );
 }
 
-export default Registro
+export default Registro;

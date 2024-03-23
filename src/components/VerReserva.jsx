@@ -1,17 +1,12 @@
-import React from 'react'
-import Navbar from './shared/navbar';
-
-
-
+import React from "react";
+import Navbar from "./shared/navbar";
 
 function VerReserva() {
   return (
     <>
-          <Navbar />
-
-    
+      <Navbar />
     </>
-  )
+  );
 }
 
-export default VerReserva
+export default VerReserva;

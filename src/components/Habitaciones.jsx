@@ -1,26 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Habitaciones() {
   const [habitaciones, setHabitaciones] = useState([]);
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchHabitaciones = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/habitaciones', {
+        const response = await axios.get("http://localhost:8080/habitaciones", {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
-        console.log('Response:', response.data); // Verifica el formato de la respuesta
+        console.log("Response:", response.data); // Verifica el formato de la respuesta
         if (Array.isArray(response.data)) {
           setHabitaciones(response.data);
         } else {
-          console.error('La respuesta del servidor no es un arreglo:', response.data);
+          console.error(
+            "La respuesta del servidor no es un arreglo:",
+            response.data,
+          );
         }
       } catch (error) {
-        console.error('Error al obtener las habitaciones:', error);
+        console.error("Error al obtener las habitaciones:", error);
       }
     };
 
@@ -41,7 +44,7 @@ function Habitaciones() {
           </tr>
         </thead>
         <tbody>
-          {habitaciones.map(habitacion => (
+          {habitaciones.map((habitacion) => (
             <tr key={habitacion.idRoom}>
               <td>{habitacion.idRoom}</td>
               <td>{habitacion.roomNumber}</td>

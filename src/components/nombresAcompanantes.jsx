@@ -25,24 +25,28 @@ function NombresAcompanantes() {
     if (id) {
       setIdHost(id);
       // Hacer una solicitud para obtener la información del huésped por su ID
-      axios.get(`http://localhost:8080/huesped/${id}`, {
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      })
-      .then(response => {
-        setNumAcompanantes(response.data.numberOfCompanions);
-        // Crear un array con la cantidad de acompañantes
-        const companionsArray = Array.from({ length: response.data.numberOfCompanions }, (_, index) => ({
-          name: "",
-          lastName: "",
-          dni: ""
-        }));
-        setCompanionsData(companionsArray);
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      });
+      axios
+        .get(`http://localhost:8080/huesped/${id}`, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((response) => {
+          setNumAcompanantes(response.data.numberOfCompanions);
+          // Crear un array con la cantidad de acompañantes
+          const companionsArray = Array.from(
+            { length: response.data.numberOfCompanions },
+            (_, index) => ({
+              name: "",
+              lastName: "",
+              dni: "",
+            }),
+          );
+          setCompanionsData(companionsArray);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
   }, []);
 
@@ -57,19 +61,25 @@ function NombresAcompanantes() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await Promise.all(companionsData.map(async companion => {
-        await axios.post("http://localhost:8080/crearAcompaniante", {
-          companionName: companion.name,
-          companionLastname: companion.lastName,
-          companionDni: companion.dni,
-          host: { idHost }
-        }, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-      }));
+      await Promise.all(
+        companionsData.map(async (companion) => {
+          await axios.post(
+            "http://localhost:8080/crearAcompaniante",
+            {
+              companionName: companion.name,
+              companionLastname: companion.lastName,
+              companionDni: companion.dni,
+              host: { idHost },
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          );
+        }),
+      );
       setCompanionsSaved(true);
       setShowInputs(false); // Ocultar inputs después de guardar
     } catch (error) {
@@ -83,11 +93,11 @@ function NombresAcompanantes() {
     }
   };
 
- const handleContinueReservation = () => {
-  if (window.confirm("¿Estás seguro de continuar con la reserva?")) {
-navigate(`/nueva-reserva/${idHost}`, { state: { token } });
-  }
-};
+  const handleContinueReservation = () => {
+    if (window.confirm("¿Estás seguro de continuar con la reserva?")) {
+      navigate(`/nueva-reserva/${idHost}`, { state: { token } });
+    }
+  };
 
   return (
     <div className="bg-neutral-200 h-screen">
@@ -100,36 +110,38 @@ navigate(`/nueva-reserva/${idHost}`, { state: { token } });
           <div>
             <p>Sin acompañantes</p>
             <button onClick={handleBackToHome}>Volver al inicio</button>
-            <button onClick={handleContinueReservation}>Continuar con la reserva</button>
+            <button onClick={handleContinueReservation}>
+              Continuar con la reserva
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
-            {showInputs && companionsData.map((companion, index) => (
-              <div key={index}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Nombre"
-                  value={companion.name}
-                  onChange={(e) => handleChange(index, e)}
-                />
-                <input
-                  type="text"
-                  name="lastName"
-                  placeholder="Apellido"
-                  value={companion.lastName}
-                  onChange={(e) => handleChange(index, e)}
-                />
-                <input
-                type="text"
-                name="dni"
-                placeholder="DNI"
-                value={companion.dni}
-                onChange={(e) => handleChange(index, e)} // <- Paréntesis cerrado correctamente
-              />
-
-              </div>
-            ))}
+            {showInputs &&
+              companionsData.map((companion, index) => (
+                <div key={index}>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Nombre"
+                    value={companion.name}
+                    onChange={(e) => handleChange(index, e)}
+                  />
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Apellido"
+                    value={companion.lastName}
+                    onChange={(e) => handleChange(index, e)}
+                  />
+                  <input
+                    type="text"
+                    name="dni"
+                    placeholder="DNI"
+                    value={companion.dni}
+                    onChange={(e) => handleChange(index, e)} // <- Paréntesis cerrado correctamente
+                  />
+                </div>
+              ))}
             {showInputs && <button type="submit">Guardar Acompañantes</button>}
           </form>
         )}
@@ -137,7 +149,9 @@ navigate(`/nueva-reserva/${idHost}`, { state: { token } });
           <>
             <p>Los acompañantes han sido guardados correctamente.</p>
             <button onClick={handleBackToHome}>Volver al inicio</button>
-            <button onClick={handleContinueReservation}>Continuar con la reserva</button>
+            <button onClick={handleContinueReservation}>
+              Continuar con la reserva
+            </button>
           </>
         )}
       </div>
@@ -146,4 +160,3 @@ navigate(`/nueva-reserva/${idHost}`, { state: { token } });
 }
 
 export default NombresAcompanantes;
-

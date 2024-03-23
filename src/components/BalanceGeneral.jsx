@@ -1,13 +1,12 @@
-import React from 'react'
-import Navbar from './shared/navbar';
+import React from "react";
+import Navbar from "./shared/navbar";
 
 function BalanceGeneral() {
   return (
     <>
-          <Navbar />
-
+      <Navbar />
     </>
-  )
+  );
 }
 
-export default BalanceGeneral
+export default BalanceGeneral;

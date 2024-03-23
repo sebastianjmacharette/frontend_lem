@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/login",
-        { username, password }
-      );
+      const response = await axios.post("http://localhost:8080/login", {
+        username,
+        password,
+      });
 
       const responseData = response.data;
       console.log("Respuesta del inicio de sesión:", responseData);
@@ -66,7 +66,12 @@ function Login() {
 
       <form onSubmit={handleLogin} className="max-w-sm mx-auto">
         <div className="mb-5">
-          <label htmlFor="username" className="block mb-2 text-base font-medium text-teal-500 font-semibold dark:text-teal-500">Usuario</label>
+          <label
+            htmlFor="username"
+            className="block mb-2 text-base font-medium text-teal-500 font-semibold dark:text-teal-500"
+          >
+            Usuario
+          </label>
           <input
             type="text"
             value={username}
@@ -77,7 +82,12 @@ function Login() {
           />
         </div>
         <div className="mb-5">
-          <label htmlFor="password" className="block mb-2 text-base font-medium text-teal-500 font-semibold dark:text-teal-500">Password</label>
+          <label
+            htmlFor="password"
+            className="block mb-2 text-base text-teal-500 font-semibold dark:text-teal-500"
+          >
+            Password
+          </label>
           <input
             type="password"
             value={password}
