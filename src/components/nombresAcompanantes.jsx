@@ -9,6 +9,7 @@ function NombresAcompanantes() {
   const [numAcompanantes, setNumAcompanantes] = useState(0);
   const [companionsData, setCompanionsData] = useState([]);
   const [companionsSaved, setCompanionsSaved] = useState(false);
+  const [showInputs, setShowInputs] = useState(true); // Estado para mostrar/ocultar inputs
 
   const navigate = useNavigate();
 
@@ -70,6 +71,7 @@ function NombresAcompanantes() {
         });
       }));
       setCompanionsSaved(true);
+      setShowInputs(false); // Ocultar inputs después de guardar
     } catch (error) {
       console.error("Error:", error);
     }
@@ -81,11 +83,11 @@ function NombresAcompanantes() {
     }
   };
 
-  const handleContinueReservation = () => {
-    if (window.confirm("¿Estás seguro de continuar con la reserva?")) {
-      navigate(`/nueva-reserva/${idHost}`);
-    }
-  };
+ const handleContinueReservation = () => {
+  if (window.confirm("¿Estás seguro de continuar con la reserva?")) {
+navigate(`/nueva-reserva/${idHost}`, { state: { token } });
+  }
+};
 
   return (
     <div className="bg-neutral-200 h-screen">
@@ -94,40 +96,54 @@ function NombresAcompanantes() {
         <h1>Token: {token}</h1>
         <h2>ID del huésped: {idHost}</h2>
         <h3>Número de acompañantes: {numAcompanantes}</h3>
-        <form onSubmit={handleSubmit}>
-          {companionsData.map((companion, index) => (
-            <div key={index}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Nombre"
-                value={companion.name}
-                onChange={(e) => handleChange(index, e)}
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Apellido"
-                value={companion.lastName}
-                onChange={(e) => handleChange(index, e)}
-              />
-              <input
+        {numAcompanantes === 0 ? (
+          <div>
+            <p>Sin acompañantes</p>
+            <button onClick={handleBackToHome}>Volver al inicio</button>
+            <button onClick={handleContinueReservation}>Continuar con la reserva</button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            {showInputs && companionsData.map((companion, index) => (
+              <div key={index}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nombre"
+                  value={companion.name}
+                  onChange={(e) => handleChange(index, e)}
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Apellido"
+                  value={companion.lastName}
+                  onChange={(e) => handleChange(index, e)}
+                />
+                <input
                 type="text"
                 name="dni"
                 placeholder="DNI"
                 value={companion.dni}
-                onChange={(e) => handleChange(index, e)}
+                onChange={(e) => handleChange(index, e)} // <- Paréntesis cerrado correctamente
               />
-            </div>
-          ))}
-          <button type="submit">Guardar Acompañantes</button>
-        </form>
-        {companionsSaved && <p>Los acompañantes han sido guardados.</p>}
-        <button onClick={handleBackToHome}>Volver al inicio</button>
-        <button onClick={handleContinueReservation}>Continuar con la reserva</button>
+
+              </div>
+            ))}
+            {showInputs && <button type="submit">Guardar Acompañantes</button>}
+          </form>
+        )}
+        {companionsSaved && (
+          <>
+            <p>Los acompañantes han sido guardados correctamente.</p>
+            <button onClick={handleBackToHome}>Volver al inicio</button>
+            <button onClick={handleContinueReservation}>Continuar con la reserva</button>
+          </>
+        )}
       </div>
     </div>
   );
 }
 
 export default NombresAcompanantes;
+
