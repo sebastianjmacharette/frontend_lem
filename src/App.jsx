@@ -20,6 +20,9 @@ import NuevaReserva from "./components/NuevaReserva";
 import PreReserva from "./components/PreReserva";
 import NuevaHabitacion from "./components/nueva-habitacion";
 import ControlHabitaciones from "./components/ControlHabitaciones";
+import ModificarHabitacion from "./components/ModificarHabitacion";
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -50,6 +53,8 @@ function App() {
         <Route path="/pre-reserva" element={<PreReserva />} />
         <Route path="/nueva-habitacion" element={<NuevaHabitacion />} />
         <Route path="/control-habitaciones" element={<ControlHabitaciones />} />
+        <Route path="/modificar-habitacion/:id" element={<ModificarHabitacion />} />
+
         s
       </Routes>
     </BrowserRouter>
