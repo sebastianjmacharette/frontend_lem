@@ -28,7 +28,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/nuevo-huesped" element={<NuevoHuesped />} />
-        <Route path="/modificar-huesped" element={<ModificarHuesped />} />
+        <Route path="/modificar-huesped/:id" element={<ModificarHuesped />} />
         <Route path="/lista-huespedes" element={<ListaHuespedes />} />
         <Route
           path="/agregar-consumo-reserva"
