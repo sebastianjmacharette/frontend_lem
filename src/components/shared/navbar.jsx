@@ -292,10 +292,10 @@ function navbar() {
                       </a>
                       <li>
                         <a
-                          href="/control-habitaciones"
+                          href="/habitaciones"
                           className="block px-4 py-2 hover:bg-teal-400 hover:text-white dark:hover:bg-gray-600 dark:hover:text-teal-500"
                         >
-                          habitaciones
+                          Control Habitaciones
                         </a>
                       </li>
                     </li>
