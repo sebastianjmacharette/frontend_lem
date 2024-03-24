@@ -8,6 +8,7 @@ function Habitaciones() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [actionType, setActionType] = useState("");
   const [selectedRoomId, setSelectedRoomId] = useState(null);
+  const [sortBy, setSortBy] = useState(""); // Estado para el criterio de ordenamiento
 
   useEffect(() => {
     const fetchHabitaciones = async () => {
@@ -89,31 +90,67 @@ function Habitaciones() {
         return "";
     }
   };
+
+  const sortTable = (criteria) => {
+    // Ordenar habitaciones según el criterio
+    const sortedHabitaciones = [...habitaciones].sort((a, b) => {
+      if (criteria === "price") {
+        return a.price - b.price;
+      } else if (criteria === "roomState") {
+        return a.roomState.localeCompare(b.roomState);
+      } else if (criteria === "roomBeds") {
+        return a.roomBeds - b.roomBeds;
+      }
+    });
+    setHabitaciones(sortedHabitaciones);
+    setSortBy(criteria);
+  };
+
   return (
     <div className="h-screen bg-teal-50">
       <Navbar />
-      <h1
-      className="text-teal-500 font-sans font-bold text-4xl text-center m-4"
-      >Control de Habitaciones</h1>
+      <h1 className="text-teal-500 font-sans font-bold text-4xl text-center m-4">
+        Control de Habitaciones
+      </h1>
       <table className="w-full">
         <thead>
           <tr className="bg-stone-400 whitespace-nowrap px-6 py-4 border-b border-neutral-800">
-            <th className="whitespace-nowrap px-6 py-4 border-b text-center ">
+            <th
+              className="whitespace-nowrap px-6 py-4 border-b text-center cursor-pointer"
+              onClick={() => sortTable("idRoom")}
+            >
               ID
+              {sortBy === "idRoom" && " ↑"}
             </th>
-            <th className="whitespace-nowrap px-6 py-4 border-b text-center ">
+            <th
+              className="whitespace-nowrap px-6 py-4 border-b text-center cursor-pointer"
+              onClick={() => sortTable("roomNumber")}
+            >
               Número de Habitación
+              {sortBy === "roomNumber" && " ↑"}
             </th>
-            <th className="whitespace-nowrap px-6 py-4 border-b text-center ">
+            <th
+              className="whitespace-nowrap px-6 py-4 border-b text-center cursor-pointer"
+              onClick={() => sortTable("roomState")}
+            >
               Estado
+              {sortBy === "roomState" && " ↑"}
             </th>
-            <th className="whitespace-nowrap px-6 py-4 border-b text-center ">
+            <th
+              className="whitespace-nowrap px-6 py-4 border-b text-center cursor-pointer"
+              onClick={() => sortTable("price")}
+            >
               Precio
+              {sortBy === "price" && " ↑"}
             </th>
-            <th className="whitespace-nowrap px-6 py-4 border-b text-center ">
+            <th
+              className="whitespace-nowrap px-6 py-4 border-b text-center cursor-pointer"
+              onClick={() => sortTable("roomBeds")}
+            >
               Plazas
+              {sortBy === "roomBeds" && " ↑"}
             </th>
-            <th className="whitespace-nowrap px-6 py-4 border-b text-center ">
+            <th className="whitespace-nowrap px-6 py-4 border-b text-center">
               Acciones
             </th>
           </tr>
@@ -121,88 +158,89 @@ function Habitaciones() {
         <tbody>
           {habitaciones.map((habitacion) => (
             <tr className="border-neutral-800" key={habitacion.idRoom}>
-              <td className="whitespace-nowrap px-6 py-4 border-b text-center text-teal-500 font-sans font-semibold ">
+              <td className="whitespace-nowrap px-6 py-4 border-b text-center text-teal-500 font-sans font-semibold">
                 {habitacion.idRoom}
               </td>
-              <td className="whitespace-nowrap px-6 py-4 border-b text-center text-teal-500 font-sans font-semibold ">
+              <td className="whitespace-nowrap px-6 py-4 border-b text-center text-teal-500 font-sans font-semibold">
                 {habitacion.roomNumber}
               </td>
               <td className="whitespace-nowrap px-1 py-1 border-b text-center font-sans font-semibold text-xs">
-  <span className={`${getColorClass(habitacion.roomState)} inline-block w-3 h-3 mr-3 rounded-full`}></span>
-  {habitacion.roomState}
-</td>
-
-
-              <td className="whitespace-nowrap px-6 py-4 border-b text-center text-teal-500 font-sans font-semibold ">
+                <span
+                  className={`${getColorClass(habitacion.roomState)} inline-block w-3 h-3 mr-3 rounded-full`}
+                ></span>
+                {habitacion.roomState}
+              </td>
+              <td className="whitespace-nowrap px-6 py-4 border-b text-center text-teal-500 font-sans font-semibold">
                 {habitacion.price}
               </td>
-              <td className="whitespace-nowrap px-6 py-4 border-b text-center text-teal-500 font-sans font-semibold ">
+              <td className="whitespace-nowrap px-6 py-4 border-b text-center text-teal-500 font-sans font-semibold">
                 {habitacion.roomBeds}
               </td>
-              <td className="whitespace-nowrap px-6 py-4 border-b text-center ">
+              <td className="whitespace-nowrap px-6 py-4 border-b text-center">
                 <button
                   className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none 
               focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
-               dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-                  onClick={() => handleConfirm("editar", habitacion.idRoom)}
-                >
-                  Editar
-                </button>
-                <button
-                  className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none 
-              focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
-               dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-                  onClick={() => handleConfirm("eliminar", habitacion.idRoom)}
-                >
-                  Eliminar
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                 onClick={() => handleConfirm("editar", habitacion.idRoom)}
+               >
+                 Editar
+               </button>
+               <button
+                 className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none 
+             focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+              dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                 onClick={() => handleConfirm("eliminar", habitacion.idRoom)}
+               >
+                 Eliminar
+               </button>
+             </td>
+           </tr>
+         ))}
+       </tbody>
+     </table>
 
-      {/* Modal de confirmación */}
-      {showConfirmation && (
-        <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center block sm:p-0">
-            <div className="fixed inset-0 transition-opacity">
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
-            &#8203;
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-              <div className="bg-white p-4">
-                <p className="text-lg mb-2 text-teal-500 font-semibold ">
-                  ¿Estás seguro de{" "}
-                  {actionType === "eliminar" ? "eliminar" : "editar"} la
-                  habitación?
-                </p>
-                <div className="flex justify-end">
-                  <button
-                    className="text-white font-semibold bg-teal-500 hover:bg-red-700 text-base focus:outline-none 
-                    focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
-                     dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-                    onClick={handleCancel}
-                  >
-                    Cancelar
-                  </button>
-                  <button
-                    className="text-white font-semibold bg-teal-500 hover:bg-lime-500 text-base focus:outline-none 
-                    focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
-                     dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-                    onClick={handleAction}
-                  >
-                    Confirmar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+     {/* Modal de confirmación */}
+     {showConfirmation && (
+       <div className="fixed z-10 inset-0 overflow-y-auto">
+         <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center block sm:p-0">
+           <div className="fixed inset-0 transition-opacity">
+             <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+           </div>
+           <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
+           &#8203;
+           <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+             <div className="bg-white p-4">
+               <p className="text-lg mb-2 text-teal-500 font-semibold ">
+                 ¿Estás seguro de{" "}
+                 {actionType === "eliminar" ? "eliminar" : "editar"} la
+                 habitación?
+               </p>
+               <div className="flex justify-end">
+                 <button
+                   className="text-white font-semibold bg-teal-500 hover:bg-red-700 text-base focus:outline-none 
+                   focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+                    dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                   onClick={handleCancel}
+                 >
+                   Cancelar
+                 </button>
+                 <button
+                   className="text-white font-semibold bg-teal-500 hover:bg-lime-500 text-base focus:outline-none 
+                   focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+                    dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                   onClick={handleAction}
+                 >
+                   Confirmar
+                 </button>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     )}
+   </div>
+ );
 }
 
 export default Habitaciones;
+

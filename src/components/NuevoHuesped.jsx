@@ -111,26 +111,38 @@ function NuevoHuesped() {
   return (
     <div className="bg-neutral-200 h-screen">
       <Navbar />
-      <form className="max-w-md mx-auto mt-4" onSubmit={handleSubmit}>
+      <h2
+      className="text-teal-500 font-sans font-bold text-xl text-center m-1 "
+      >
+        Agregar Husped / Reserva
+      </h2>
+      
+      <form className=" m-10 " onSubmit={handleSubmit}>
+      <div class="flex flex-wrap">
+  <div class= "md:w-1/2">
         {/* Campo para el nombre del huésped */}
         <div className="relative z-0 w-full mb-5 group">
+          <div>
+          <label
+            htmlFor="hostName"
+            className=" text-teal-500 "
+          >
+            Nombre del Huesped
+          </label>
+          </div>
+       
           <input
             type="text"
             name="hostName"
             id="hostName"
-            className="block py-2.5 px-0 w-full text-sm text-teal-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer"
+            className=" text-teal-500 bg-transparent border-b-2 border-teal-500  focus:outline-none rounded-2xl focus:border-teal-600"
             placeholder=" "
             value={formData.hostName}
             onChange={handleChange}
             onBlur={handleBlur}
             required
           />
-          <label
-            htmlFor="hostName"
-            className="peer-focus:font-medium absolute text-sm text-teal-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Nombre del Huesped
-          </label>
+         
         </div>
 
         {/* Campo para el apellido del huésped */}
@@ -176,6 +188,10 @@ function NuevoHuesped() {
         </div>
 
         {/* Campo para el teléfono del huésped */}
+        </div>
+        <div class="w-full md:w-1/2">
+
+
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="text"
@@ -266,6 +282,8 @@ function NuevoHuesped() {
         >
           {submitting ? "Enviando..." : "Nuevo Huesped"}
         </button>
+        </div>
+</div>
       </form>
     </div>
   );

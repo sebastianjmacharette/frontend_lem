@@ -194,20 +194,19 @@ const handleSubmit = async (e) => {
           <label className="block">
             Tipo de Pensión:
             <select
-  name="roomId"
-  value={formData.roomId}
+  name="roomPension"
+  value={formData.roomPension}
   onChange={handleInputChange}
   className="mt-1 p-1 w-full"
 >
   <option key="default" value="">
-    Seleccione una habitación
+    Seleccione un tipo de pensión
   </option>
-  {rooms.map((room) => (
-    <option key={room.id} value={room.id}>
-      {room.roomNumber}
-    </option>
-  ))}
+  <option value="DESAYUNO">Desayuno</option>
+  <option value="MEDIA PENSION">Media Pensión</option>
+  <option value="PENSION COMPLETA">Pensión Completa</option>
 </select>
+
 
           </label>
           <br />

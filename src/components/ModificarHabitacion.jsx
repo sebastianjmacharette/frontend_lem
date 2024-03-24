@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import Navbar from "./shared/navbar";
 function ModificarHabitacion() {
   const { id } = useParams();
   const token = localStorage.getItem("token");
@@ -65,43 +65,58 @@ function ModificarHabitacion() {
   };
 
   return (
-    <div>
-      <h2>Modificar Habitación</h2>
-      <form>
-        <label>
-          Número de Habitación:
-          <input
-            type="text"
-            name="roomNumber"
-            value={room.roomNumber}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Estado:
-          <select name="roomState" value={room.roomState} onChange={handleChange}>
-            <option value="LIBRE">LIBRE</option>
-            <option value="OCUPADA">OCUPADA</option>
-            <option value="MANTENIMIENTO">EN MANTENIMIENTO</option>
-          </select>
-        </label>
-        <input
-          type="hidden"
-          name="price"
-          value={room.price}
-          onChange={handleChange}
-        />
-        <label>
-          Plazas:
-          <input
-            type="text"
-            name="roomBeds"
-            value={room.roomBeds}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="button" onClick={handleConfirm}>Guardar Cambios</button>
-      </form>
+    <div className="h-screen bg-teal-50"><Navbar/>
+      <h2
+            className="text-teal-500 font-sans font-bold text-4xl text-center m-4"
+
+      >Modificar Habitación</h2>
+  <form className="flex flex-col items-center">
+  <label             className="text-teal-500 font-sans font-bold text-xl text-center m-1"
+>
+    Número de Habitación:
+  </label>
+  <input
+    type="text"
+    name="roomNumber"
+    value={room.roomNumber}
+    onChange={handleChange}
+    className="text-teal-500 font-sans font-bold text-xl text-center rounded-3xl m-1"
+  />
+  <label className="text-teal-500 font-sans font-bold text-xl text-center m-1 rounded-3xl">
+    Estado:
+  </label>
+  <select
+  name="roomState"
+  value={room.roomState}
+  onChange={handleChange}
+  className="text-teal-500 font-sans text-center m-1 rounded-3xl"
+>
+  <option value="LIBRE" className="hover:bg-teal-500 rounded-3xl">LIBRE</option>
+  <option value="OCUPADA">OCUPADA</option>
+  <option value="MANTENIMIENTO">EN MANTENIMIENTO</option>
+</select>
+
+  <input type="hidden" name="price" value={room.price} onChange={handleChange} />
+  <label className="text-teal-500 font-sans font-bold text-xl text-center m-1 ">
+    Plazas:
+  </label>
+  <input
+    type="text"
+    name="roomBeds"
+    value={room.roomBeds}
+    onChange={handleChange}
+    className="text-teal-500 font-sans font-bold text-xl text-center rounded-3xl m-1"
+  />
+  <button type="button" onClick={handleConfirm} 
+  className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none 
+  focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 mt-2 dark:bg-gray-800
+   dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+  >
+    Guardar Cambios
+  </button>
+</form>
+
+
 
       {/* Modal de confirmación */}
       {showConfirmation && (
@@ -113,16 +128,20 @@ function ModificarHabitacion() {
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
             <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
               <div className="bg-white p-4">
-                <p className="text-lg mb-2">¿Estás seguro de guardar los cambios?</p>
+                <p className=" text-lg mb-2 text-teal-500 font-semibold">¿Estás seguro de guardar los cambios?</p>
                 <div className="flex justify-end">
                   <button
-                    className="bg-red-500 text-white px-4 py-2 rounded-md mr-2"
+                    className="text-white font-semibold bg-teal-500 hover:bg-red-700 text-base focus:outline-none 
+                    focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+                     dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                     onClick={handleCancel}
                   >
                     Cancelar
                   </button>
                   <button
-                    className="bg-green-500 text-white px-4 py-2 rounded-md"
+                    className="text-white font-semibold bg-teal-500 hover:bg-lime-500 text-base focus:outline-none 
+                    focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+                     dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                     onClick={handleSaveChanges}
                   >
                     Confirmar
