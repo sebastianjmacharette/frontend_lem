@@ -173,20 +173,24 @@ function Habitaciones() {
             &#8203;
             <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
               <div className="bg-white p-4">
-                <p className="text-lg mb-2">
+                <p className="text-lg mb-2 text-teal-500 font-semibold ">
                   ¿Estás seguro de{" "}
                   {actionType === "eliminar" ? "eliminar" : "editar"} la
                   habitación?
                 </p>
                 <div className="flex justify-end">
                   <button
-                    className="bg-red-500 text-white px-4 py-2 rounded-md mr-2"
+                    className="text-white font-semibold bg-teal-500 hover:bg-red-700 text-base focus:outline-none 
+                    focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+                     dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                     onClick={handleCancel}
                   >
                     Cancelar
                   </button>
                   <button
-                    className="bg-green-500 text-white px-4 py-2 rounded-md"
+                    className="text-white font-semibold bg-teal-500 hover:bg-lime-500 text-base focus:outline-none 
+                    focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+                     dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                     onClick={handleAction}
                   >
                     Confirmar
