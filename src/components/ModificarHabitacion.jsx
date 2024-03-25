@@ -71,7 +71,7 @@ function ModificarHabitacion() {
 
       >Modificar Habitación</h2>
   <form className="flex flex-col items-center">
-  <label             className="text-teal-500 font-sans font-bold text-xl text-center m-1"
+  <label             className="text-teal-500 font-sans font-bold text-base text-center m-1"
 >
     Número de Habitación:
   </label>
@@ -80,9 +80,9 @@ function ModificarHabitacion() {
     name="roomNumber"
     value={room.roomNumber}
     onChange={handleChange}
-    className="text-teal-500 font-sans font-bold text-xl text-center rounded-3xl m-1"
+    className="text-teal-500 font-sans font-bold text-base text-center rounded-3xl m-1"
   />
-  <label className="text-teal-500 font-sans font-bold text-xl text-center m-1 rounded-3xl">
+  <label className="text-teal-500 font-sans font-bold text-base text-center m-1 rounded-3xl">
     Estado:
   </label>
   <select
@@ -97,7 +97,7 @@ function ModificarHabitacion() {
 </select>
 
   <input type="hidden" name="price" value={room.price} onChange={handleChange} />
-  <label className="text-teal-500 font-sans font-bold text-xl text-center m-1 ">
+  <label className="text-teal-500 font-sans font-bold text-base text-center m-1 ">
     Plazas:
   </label>
   <input
@@ -105,7 +105,7 @@ function ModificarHabitacion() {
     name="roomBeds"
     value={room.roomBeds}
     onChange={handleChange}
-    className="text-teal-500 font-sans font-bold text-xl text-center rounded-3xl m-1"
+    className="text-teal-500 font-sans font-bold text-base text-center rounded-3xl m-1"
   />
   <button type="button" onClick={handleConfirm} 
   className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none 

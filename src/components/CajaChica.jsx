@@ -5,6 +5,8 @@ function CajaChica() {
   return (
     <>
       <Navbar />
+
+
     </>
   );
 }

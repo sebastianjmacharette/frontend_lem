@@ -75,7 +75,7 @@ function navbar() {
               <li>
                 <a
                   className="text-teal-500 bg-stone-300 hover:bg-stone-400 focus:ring-4 focus:outline-none 
-    focus:ring-stone-400  rounded-lg text-xl font-semibold px-5 py-2.5 text-center inline-flex items-center
+    focus:ring-stone-400  rounded-lg text-base  px-5 py-2.5 text-center inline-flex items-center
      dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   href="/home"
                 >
@@ -91,7 +91,7 @@ function navbar() {
                   data-dropdown-delay="500"
                   data-dropdown-trigger="hover"
                   className="text-teal-500 bg-stone-300 hover:bg-stone-400 focus:ring-4 focus:outline-none focus:ring-stone-400  
-                  rounded-lg text-xl font-semibold px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  rounded-lg text-base  px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   type="button"
                 >
                   Huespedes
@@ -130,15 +130,7 @@ function navbar() {
                         Nuevo Huesped
                       </a>
                     </li>
-                    <li>
-                      <a
-                        href="/modificar-huesped"
-                        className="block px-4 py-2 hover:bg-teal-400
-         hover:text-white dark:hover:bg-gray-600 dark:hover:text-teal-500"
-                      >
-                        Modificar Huesped
-                      </a>
-                    </li>
+               
                     <li>
                       <a
                         href="lista-huespedes"
@@ -160,7 +152,7 @@ function navbar() {
                   data-dropdown-delay="500"
                   data-dropdown-trigger="hover"
                   className="text-teal-500 bg-stone-300 hover:bg-stone-400 focus:ring-4 focus:outline-none 
-    focus:ring-stone-400  rounded-lg text-xl font-semibold px-5 py-2.5 text-center inline-flex items-center
+    focus:ring-stone-400  rounded-lg text-base  px-5 py-2.5 text-center inline-flex items-center
      dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   type="button"
                 >
@@ -236,7 +228,7 @@ function navbar() {
                   data-dropdown-delay="500"
                   data-dropdown-trigger="hover"
                   className="text-teal-500 bg-stone-300 hover:bg-stone-400 focus:ring-4 focus:outline-none 
-    focus:ring-stone-400  rounded-lg text-xl font-semibold px-5 py-2.5 text-center inline-flex items-center
+    focus:ring-stone-400  rounded-lg text-base  px-5 py-2.5 text-center inline-flex items-center
      dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   type="button"
                 >

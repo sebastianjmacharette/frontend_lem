@@ -12,10 +12,10 @@ function Footer() {
 
   return (
     <footer
-      className="bg-neutral-200 text-teal-500 dark:bg-gray-900 m-4"
+      className="bg-neutral-200 text-teal-500 dark:bg-gray-900 m-4 mb-0  mx-0"
       style={{ margin: 0 }}
     >
-      <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8 text-center font-bold">
+      <div className="w-full max-w-screen-xl mx-auto p-4 m-0 md:py-8 text-center font-bold">
         {/* Utiliza sm:flex-row para mostrar las imágenes en fila en pantallas pequeñas */}
         <div className="sm:flex sm:flex-row sm:items-center sm:justify-between">
           <img

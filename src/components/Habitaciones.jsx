@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/shared/navbar";
-
+import Footer from "./shared/Footer";
 function Habitaciones() {
   const [habitaciones, setHabitaciones] = useState([]);
   const token = localStorage.getItem("token");
@@ -107,11 +107,22 @@ function Habitaciones() {
   };
 
   return (
-    <div className="h-screen bg-teal-50">
+    <div className=" bg-teal-50">
       <Navbar />
       <h1 className="text-teal-500 font-sans font-bold text-4xl text-center m-4">
         Control de Habitaciones
       </h1>
+      
+      <div className="flex justify-end mb-2">
+        <a
+          href="/nueva-habitacion"
+          className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-full px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          
+        >
+          Nueva Habitación
+        </a>
+      </div>
+      
       <table className="w-full">
         <thead>
           <tr className="bg-stone-400 whitespace-nowrap px-6 py-4 border-b border-neutral-800">
@@ -164,7 +175,7 @@ function Habitaciones() {
               <td className="whitespace-nowrap px-6 py-4 border-b text-center text-teal-500 font-sans font-semibold">
                 {habitacion.roomNumber}
               </td>
-              <td className="whitespace-nowrap px-1 py-1 border-b text-center font-sans font-semibold text-xs">
+              <td className="whitespace-nowrap px-1 py-1 border-b text-center font-sans font-semibold text-base ">
                 <span
                   className={`${getColorClass(habitacion.roomState)} inline-block w-3 h-3 mr-3 rounded-full`}
                 ></span>
@@ -238,6 +249,7 @@ function Habitaciones() {
          </div>
        </div>
      )}
+     <Footer/>
    </div>
  );
 }
