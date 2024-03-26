@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "./shared/navbar";
 import Swal from "sweetalert2";
-
+import Footer from "./shared/Footer";
 function Registro() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -45,7 +45,9 @@ function Registro() {
   };
 
   return (
-    <>
+    <div
+    className="bg-teal-50 "
+    >
       <Navbar />
       <h2 className="mt-10 text-center text-teal-500 text-4xl font-semibold">
         Nuevo Usuario
@@ -58,8 +60,10 @@ function Registro() {
           <span className="font-medium">¡Error!</span> {error}
         </div>
       )}
-      <div className="px-10 sm:px-4 md:px-10 lg:px-60">
-        <form onSubmit={handleRegistro}>
+      <div className="flex justify-center">
+        <form
+        className="w-80 shadow-2xl bg-teal-50 rounded-3xl shadow-teal-500 overflow-hidden mb-0"
+        onSubmit={handleRegistro}>
           <div className="mt-10">
             <label
               htmlFor="email"
@@ -71,7 +75,7 @@ function Registro() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-neutral-200 border-2 border-black text-teal-500 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-teal-500 dark:focus:ring-black dark:focus:border-black"
+              className="bg-teal-100 border-2 border-black text-teal-500 text-sm rounded-3xl focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-teal-500 dark:focus:ring-black dark:focus:border-black"
               placeholder="Email"
               required
             />
@@ -87,7 +91,7 @@ function Registro() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="bg-neutral-200 border-2 border-black text-teal-500 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-teal-500 dark:focus:ring-black dark:focus:border-black"
+              className="bg-teal-100 border-2 border-black text-teal-500 text-sm rounded-3xl focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-teal-500 dark:focus:ring-black dark:focus:border-black"
               placeholder="Usuario"
               required
             />
@@ -103,7 +107,7 @@ function Registro() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-neutral-200 border-2 border-black text-teal-500 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-teal-500 dark:focus:ring-black dark:focus:border-black"
+              className="bg-teal-100 border-2 border-black text-teal-500 text-sm rounded-3xl focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-teal-500 dark:focus:ring-black dark:focus:border-black"
               placeholder="Contraseña"
               required
             />
@@ -119,7 +123,7 @@ function Registro() {
               type="password"
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
-              className="bg-neutral-200 border-2 border-black text-teal-500 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-teal-500 dark:focus:ring-black dark:focus:border-black"
+              className="bg-teal-100 border-2 border-black text-teal-500 text-sm rounded-3xl focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-teal-500 dark:focus:ring-black dark:focus:border-black"
               placeholder="Confirmar Contraseña"
               required
             />
@@ -133,7 +137,8 @@ function Registro() {
           </button>
         </form>
       </div>
-    </>
+      <Footer/>
+    </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./shared/navbar";
 import axios from "axios";
+import Footer from './shared/Footer';
 
 function ListaHuespedes() {
   const [hosts, setHosts] = useState([]);
@@ -88,7 +89,7 @@ function ListaHuespedes() {
   
 
   return (
-    <>
+    <div className="bg-teal-50" >
     <Navbar />
     
 <div className="flex justify-center h-full bg-teal-50">
@@ -129,7 +130,7 @@ function ListaHuespedes() {
   </div>
 )}
 
-<div className="shadow-2xl shadow-teal-500 overflow-hidden border-b border-gray-200 sm:rounded-lg">
+<div className="shadow-2xl shadow-teal-500 overflow-hidden mb-0 border-gray-200 sm:rounded-lg">
             <div className="table-responsive">
               <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-200 ">
@@ -170,11 +171,11 @@ function ListaHuespedes() {
           <tbody className="bg-teal-50 divide-ydivide-gray-200">
             {sortedHosts.map((host) => (
               <tr key={host.idHost}>
-                <td className="px-6 py-4 whitespace-nowrap">{host.idHost}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{host.hostName}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{host.hostLastname}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{host.notes}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-6 py-4 whitespace-nowrap text-lg text-teal-500 font-semibold ">{host.idHost}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-lg text-teal-500 font-semibold ">{host.hostName}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-lg text-teal-500 font-semibold ">{host.hostLastname}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-lg text-teal-500 font-semibold ">{host.notes}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-lg text-teal-500 font-semibold ">
                   <button onClick={() => handleEliminar(host.idHost)} className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none 
               focus:ring-4 focus:ring-gray-300  rounded-full  px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
                dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
@@ -194,7 +195,8 @@ function ListaHuespedes() {
     </div>
     </div>
     </div>
-    </>
+    <Footer/>
+    </div>
   );
 }
 

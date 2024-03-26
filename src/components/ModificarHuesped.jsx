@@ -80,7 +80,9 @@ function ModificarHuesped() {
       <Navbar />
       <h2 className="text-center text-4xl mt-4 font-bold text-teal-500 mb-4">Modificar Huésped</h2>
       <div className="mx-auto max-w-lg">
-        <form>
+        <form  
+        className="shadow-2xl shadow-teal-500 overflow-hidden mb-0 border-gray-200 sm:rounded-lg p-4"
+        >
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block mb-2 text-teal-500 font-semibold">Nombre:</label>

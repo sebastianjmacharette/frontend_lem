@@ -235,10 +235,10 @@ function NuevaReserva() {
 
             <br />
             <p
-            className="text-lime-500 text-base  font-semibold"
+            className="text-lime-500 text-2xl  font-semibold"
             >Horario de check-in predeterminado: {formData.checkInTime}</p>
             <p
-            className="text-red-500 text-base  font-semibold"
+            className="text-red-500 text-2xl font-semibold"
             >Horario de check-out predeterminado: {formData.checkOutTime}</p>
             <button type="submit"
              className=" text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none 

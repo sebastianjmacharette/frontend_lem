@@ -116,10 +116,10 @@ function NombresAcompanantes() {
         </div>
       </div>
       <div className="max-w-md mx-auto mt-4 ">
-        <h2 className="text-teal-500 font-semibold text-base">
+        <h2 className="text-teal-500 font-bold text-4xl">
           Datos de Acompañantes de Huesped: {idHost}
         </h2>
-        <h3 className="text-teal-500 font-semibold text-base mt-4">
+        <h3 className="text-teal-500  text-2xl font-bold mt-4">
           Número de acompañantes: {numAcompanantes}
         </h3>
         {numAcompanantes === 0 ? (
@@ -147,6 +147,8 @@ function NombresAcompanantes() {
 </div>
           </div>
         ) : (
+          
+          <div className="shadow-2xl bg-teal-50 rounded-3xl shadow-teal-500 overflow-hidden p-10 mt-10" >
           <form
            onSubmit={handleSubmit}>
             {showInputs &&
@@ -155,7 +157,7 @@ function NombresAcompanantes() {
                   <input
                     type="text"
                     name="name"
-                    className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
+                    className=" text-teal-500 bg-teal-100 font-semibold border-b-2 border-teal-500 
                  focus:outline-none rounded-2xl text-base  focus:border-teal-600 flex justify-center"
                     placeholder="Nombre"
                     value={companion.name}
@@ -165,14 +167,14 @@ function NombresAcompanantes() {
                     type="text"
                     name="lastName"
                     placeholder="Apellido"
-                    className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
+                    className=" text-teal-500 bg-teal-100 font-semibold  border-b-2 border-teal-500 
                  focus:outline-none rounded-2xl text-base  focus:border-teal-600"
                     value={companion.lastName}
                     onChange={(e) => handleChange(index, e)}
                   />
                   <input
                     type="text"
-                    className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
+                    className=" text-teal-500 bg-teal-100 font-semibold  border-b-2 border-teal-500 
                  focus:outline-none rounded-2xl text-base  focus:border-teal-600"
                     name="dni"
                     placeholder="DNI"
@@ -189,11 +191,12 @@ function NombresAcompanantes() {
               dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
             type="submit">Guardar Acompañantes</button>}
           </form>
+          </div>
         )}
         {companionsSaved && (
           <>
             <p
-            className="text-lime-500 font-semibold text-base"
+            className="text-lime-700 font-semibold mb-10 text-4xl text-center"
             >Los acompañantes han sido guardados correctamente.</p>
           <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0">
   <button

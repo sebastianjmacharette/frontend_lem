@@ -107,23 +107,29 @@ function Habitaciones() {
   };
 
   return (
-    <div className=" bg-teal-50">
+    <div className=" bg-teal-50 ">
       <Navbar />
       <h1 className="text-teal-500 font-sans font-bold text-4xl text-center m-4">
         Control de Habitaciones
       </h1>
       
-      <div className="flex justify-end mb-2">
+      <div className="flex justify-end mb-2 mr-14">
         <a
           href="/nueva-habitacion"
-          className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-full px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          className="text-white font-semibold bg-teal-500 hover:bg-gray-900 text-base focus:outline-none 
+           focus:ring-4 focus:ring-gray-300 rounded-full px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+            dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
           
         >
           Nueva Habitación
         </a>
       </div>
-      
-      <table className="w-full">
+      <div
+      className="flex justify-center"
+      >
+
+     
+      <table className="w-80 shadow-2xl shadow-teal-500 overflow-hidden mb-0">
         <thead>
           <tr className="bg-stone-400 whitespace-nowrap px-6 py-4 border-b border-neutral-800">
             <th
@@ -209,7 +215,7 @@ function Habitaciones() {
          ))}
        </tbody>
      </table>
-
+     </div>
      {/* Modal de confirmación */}
      {showConfirmation && (
        <div className="fixed z-10 inset-0 overflow-y-auto">

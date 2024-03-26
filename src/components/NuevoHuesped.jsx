@@ -129,10 +129,14 @@ function NuevoHuesped() {
       <h2 className="text-teal-500 font-sans font-bold text-2xl text-center mt-4 ">
         Agregar Husped / Reserva
       </h2>
+  <div
+  className="flex justify-center"
+  >
 
-      <form className=" m-10 " onSubmit={handleSubmit}>
+  
+      <form className=" mt-10 p-10 shadow-2xl bg-teal-50 rounded-3xl shadow-teal-500 overflow-hidden sm:mx-auto  " onSubmit={handleSubmit}>
         <div className="flex flex-wrap">
-          <div className="md:w-1/2">
+          <div className="md:w-1/2 pr-10">
             {/* Campo para el nombre del huésped */}
             <div className="relative z-0 w-full mb-5 group">
               <div>
@@ -145,8 +149,8 @@ function NuevoHuesped() {
                 type="text"
                 name="hostName"
                 id="hostName"
-                className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
-                 focus:outline-none rounded-2xl text-base  focus:border-teal-600"
+                className=" text-teal-500 bg-teal-100 border-b-2 border-teal-500 
+                 focus:outline-none rounded-2xl  font-semibold focus:border-teal-600"
                 placeholder=" "
                 value={formData.hostName}
                 onChange={handleChange}
@@ -168,8 +172,8 @@ function NuevoHuesped() {
                 type="text"
                 name="hostLastname"
                 id="hostLastname"
-                className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
-                focus:outline-none rounded-2xl text-base  focus:border-teal-600"                placeholder=" "
+                className=" text-teal-500 bg-teal-100 border-b-2 border-teal-500 
+                focus:outline-none rounded-2xl text-base font-semibold  focus:border-teal-600"                placeholder=" "
                 onBlur={handleBlur} // Agrega el evento onBlur
                 value={formData.hostLastname}
                 onChange={handleChange}
@@ -194,8 +198,8 @@ function NuevoHuesped() {
                 type="text"
                 name="hostDni"
                 id="hostDni"
-                className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
-                focus:outline-none rounded-2xl text-base  focus:border-teal-600"                placeholder=" "
+                className=" text-teal-500 bg-teal-100 border-b-2 border-teal-500 
+                focus:outline-none rounded-2xl text-base font-semibold  focus:border-teal-600"                placeholder=" "
                 value={formData.hostDni}
                 onChange={handleChange}
                 onBlur={handleBlur} // Agrega el evento onBlur
@@ -212,7 +216,7 @@ function NuevoHuesped() {
             <div>
                 <label
                 htmlFor="hostTelephone"
-                className="text-teal-500 text-base  font-semibold"
+                className="text-teal-500 text-base   font-semibold"
               >
                 Teléfono del Huesped
               </label>
@@ -221,8 +225,8 @@ function NuevoHuesped() {
                 type="text"
                 name="hostTelephone"
                 id="hostTelephone"
-                className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
-                focus:outline-none rounded-2xl text-base  focus:border-teal-600"                placeholder=" "
+                className=" text-teal-500 bg-teal-100 border-b-2 border-teal-500 
+                focus:outline-none rounded-2xl text-base font-semibold focus:border-teal-600"                placeholder=" "
                 value={formData.hostTelephone}
                 onChange={handleChange}
                 onBlur={handleBlur} // Agrega el evento onBlur
@@ -246,8 +250,8 @@ function NuevoHuesped() {
                 type="date"
                 name="hostBirthDay"
                 id="hostBirthDay"
-                className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
-                focus:outline-none rounded-2xl text-base  focus:border-teal-600"                placeholder=" "
+                className=" text-teal-500 bg-teal-100 border-b-2 border-teal-500 
+                focus:outline-none rounded-2xl text-base font-semibold  focus:border-teal-600"                placeholder=" "
                 value={formData.hostBirthDay}
                 onChange={handleChange}
                 onBlur={handleBlur} // Agrega el evento onBlur
@@ -270,8 +274,8 @@ function NuevoHuesped() {
               <textarea
                 name="notes"
                 id="notes"
-                className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
-                focus:outline-none rounded-2xl text-base  focus:border-teal-600"                placeholder=" "
+                className=" text-teal-500 bg-teal-100 border-b-2 border-teal-500 
+                focus:outline-none rounded-2xl text-base font-semibold focus:border-teal-600"                placeholder=" "
                 value={formData.notes}
                 onChange={handleChange}
                 required
@@ -293,8 +297,8 @@ function NuevoHuesped() {
               <select
                 name="numberOfCompanions"
                 id="numberOfCompanions"
-                className=" text-teal-500 bg-transparent border-b-2 border-teal-500 
-                focus:outline-none rounded-2xl text-base  focus:border-teal-600"                value={formData.numberOfCompanions}
+                className=" text-teal-500 bg-teal-100 border-b-2 border-teal-500 
+                focus:outline-none rounded-2xl  font-semibold  focus:border-teal-600"                value={formData.numberOfCompanions}
                 onChange={handleChange}
                 required
               >
@@ -325,7 +329,7 @@ function NuevoHuesped() {
           </div>
         </div>
       </form>
-      
+      </div>
       <Footer/>
     </div>
   );
