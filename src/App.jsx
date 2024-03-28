@@ -14,13 +14,19 @@ import IngresarGastos from "./components/IngresarGastos";
 import ModificarReserva from "./components/ModificarReserva";
 import VerReserva from "./components/VerReserva";
 import ListaReservas from "./components/ListaReservas";
-import Calendar from "./components/Reservation";
+import Reservation from "./components/Reservation";
 import NombresAcompanantes from "./components/nombresAcompanantes";
 import NuevaReserva from "./components/NuevaReserva";
 import PreReserva from "./components/PreReserva";
 import NuevaHabitacion from "./components/nueva-habitacion";
 import ControlHabitaciones from "./components/ControlHabitaciones";
 import ModificarHabitacion from "./components/ModificarHabitacion";
+import CalendarReservas from "./components/CalendarReservas";
+import MostrarHabitaciones from "./components/MostrarHabitaciones";
+import PagoReserva from './components/PagoReserva';
+import ConsultasRoom from "./components/ConsultasRoom";
+
+
 
 
 function App() {
@@ -44,7 +50,7 @@ function App() {
         <Route path="/modificar-reserva" element={<ModificarReserva />} />
         <Route path="/ver-reserva" element={<VerReserva />} />
         <Route path="/lista-reservas" element={<ListaReservas />} />
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/reservation" element={<Reservation />} />
         <Route
           path="/nombresAcompanantes/:idHost"
           element={<NombresAcompanantes />}
@@ -54,8 +60,15 @@ function App() {
         <Route path="/nueva-habitacion" element={<NuevaHabitacion />} />
         <Route path="/control-habitaciones" element={<ControlHabitaciones />} />
         <Route path="/modificar-habitacion/:id" element={<ModificarHabitacion />} />
+        <Route path="/calendario-reservas" element={<CalendarReservas/>} />
+        <Route path="/mostrar-habitaciones" element={<MostrarHabitaciones/>} />
+        <Route path="/pago-reserva" element={<PagoReserva/>} />
+        <Route path="/consultas-room" element={<ConsultasRoom/>} />
 
-        s
+
+
+
+        
       </Routes>
     </BrowserRouter>
   );

@@ -34,7 +34,7 @@ function Footer() {
           <span>
             {dayName}, {monthName} {year}{" "}
             <a href="https://flowbite.com/" className="hover:underline">
-              que nombre tenemos?™
+              Tian+Tech™
             </a>
             . All Rights Reserved.
           </span>

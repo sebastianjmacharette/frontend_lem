@@ -1,0 +1,13 @@
+.tile-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .room-number {
+    color: white;
+  }
+  
